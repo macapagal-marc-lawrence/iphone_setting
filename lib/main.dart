@@ -171,3 +171,13 @@ void _toggleWifi(bool value) async {
     );
   }
 }
+        //commit by mac
+        class WifiSettingsPage extends StatefulWidget {
+          final bool wifiState;
+          final Function(bool) onWifiToggle;
+          const WifiSettingsPage({super.key, required this.wifiState, required this.onWifiToggle});
+
+          @override
+          _WifiSettingsPageState createState() => _WifiSettingsPageState();
+        }
+
