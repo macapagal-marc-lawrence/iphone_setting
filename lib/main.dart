@@ -180,4 +180,17 @@ void _toggleWifi(bool value) async {
           @override
           _WifiSettingsPageState createState() => _WifiSettingsPageState();
         }
+//commit by kevin
+
+class _WifiSettingsPageState extends State<WifiSettingsPage> {
+  bool _wifiEnabled = true;
+  bool _loading = false;
+  List<String> _wifiNetworks = ['Other...', 'Network_1', 'Network_2', 'Guest_Wifi'];
+  String _connectedNetwork = 'HCC_ICS_Lab';
+
+  @override
+  void initState() {
+    super.initState();
+    _wifiEnabled = widget.wifiState;
+  }
 
