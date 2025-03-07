@@ -43,7 +43,21 @@ class _SettingsPageState extends State<SettingsPage> {
       }
     });
   }
-
-
 }
 
+//commit by kevin
+void _toggleBluetooth(bool value) async {
+    setState(() {
+      _bluetoothLoading = true;
+    });
+    await Future.delayed(const Duration(milliseconds: 500));
+    setState(() {
+      _bluetooth = value;
+      _bluetoothLoading = false;
+    });
+
+void _toggleWifi(bool value) async {
+    setState(() {
+      _wifi = value;
+    });
+  }
