@@ -131,3 +131,16 @@ void _toggleWifi(bool value) async {
                   },
                  ),
 
+//commit by eric
+                CupertinoListTile(
+                  leading: const Icon(CupertinoIcons.antenna_radiowaves_left_right, color: Colors.green),
+                  title: const Text('Cellular'),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const Text('Off', style: TextStyle(color: CupertinoColors.systemGrey)),
+                      const SizedBox(width: 5),
+                      const Icon(CupertinoIcons.chevron_forward),
+                    ],
+                  ),
+                ),
