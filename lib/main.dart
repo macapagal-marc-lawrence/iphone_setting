@@ -61,3 +61,44 @@ void _toggleWifi(bool value) async {
       _wifi = value;
     });
   }
+
+  @override
+    Widget build(BuildContext context) {
+      return CupertinoPageScaffold(
+        navigationBar: const CupertinoNavigationBar(
+          middle: Text('Settings'),
+        ),
+        child: SafeArea(
+          child: ListView(
+            children: <Widget>[
+              CupertinoListSection.insetGrouped(
+                children: <Widget>[
+                  CupertinoListTile(
+                    leading: const Icon(CupertinoIcons.airplane, color: Colors.orange),
+                    title: const Text('Airplane Mode'),
+                    trailing: CupertinoSwitch(
+                      value: _airplaneMode,
+                      onChanged: _toggleAirplaneMode,
+                    ),
+                  ),
+                  CupertinoListTile(
+                    leading: const Icon(CupertinoIcons.wifi, color: Colors.blue),
+                    title: const Text('Wi-Fi'),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Text(_wifi ? 'HCC_ICS_Lab' : 'Off', style: TextStyle(color: CupertinoColors.systemGrey)),
+                        const SizedBox(width: 5),
+                        const Icon(CupertinoIcons.chevron_forward),
+                      ],
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => WifiSettingsPage(
+                                wifiState: _wifi, onWifiToggle: _toggleWifi)),
+                      );
+                    },
+                  ),
+
