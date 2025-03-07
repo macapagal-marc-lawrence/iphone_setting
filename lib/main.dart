@@ -157,3 +157,17 @@ void _toggleWifi(bool value) async {
                     ],
                   ),
                 ),
+//commit by eric
+                CupertinoListTile(
+                  leading: const Icon(CupertinoIcons.battery_100, color: Colors.green),
+                  title: const Text('Battery'),
+                  trailing: const Icon(CupertinoIcons.chevron_forward),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
