@@ -101,4 +101,33 @@ void _toggleWifi(bool value) async {
                       );
                     },
                   ),
+                    CupertinoListTile(
+                      leading: const Icon(CupertinoIcons.bluetooth, color: Colors.blue),
+                      title: const Text('Bluetooth'),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                         if (_bluetoothLoading)
+                          const CupertinoActivityIndicator()
+                       else if (_connectedDevice != null)
+                        Text(_connectedDevice!, style: TextStyle(color: CupertinoColors.systemGrey))
+                       else
+                         Text(_bluetooth ? 'Beats Pro' : 'Off', style: TextStyle(color: CupertinoColors.systemGrey)),
+                       const SizedBox(width: 5),
+                       const Icon(CupertinoIcons.chevron_forward),
+                     ],
+                      ),
+                    onTap: () async {
+                     final result = await Navigator.push(
+                       context,
+                       CupertinoPageRoute(builder: (context) => BluetoothSettingsPage()),
+                     );
+                      if (result != null && result is Map<String, dynamic>) {
+                        _toggleBluetooth(result['isEnabled']);
+                       setState(() {
+                         _connectedDevice = result['connectedDevice'];
+                      });
+                    }
+                  },
+                 ),
 
