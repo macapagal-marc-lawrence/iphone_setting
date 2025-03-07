@@ -144,3 +144,16 @@ void _toggleWifi(bool value) async {
                     ],
                   ),
                 ),
+//commit by charles
+                CupertinoListTile(
+                  leading: Icon(CupertinoIcons.personalhotspot, color: Colors.grey.shade500),
+                  title: Text('Personal Hotspot', style: TextStyle(color: Colors.grey.shade500)),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Text(_hotspot ? 'On' : 'Off', style: TextStyle(color: Colors.grey.shade500)),
+                      const SizedBox(width: 5),
+                      const Icon(CupertinoIcons.chevron_forward, color: CupertinoColors.systemGrey),
+                    ],
+                  ),
+                ),
