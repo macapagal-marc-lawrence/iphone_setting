@@ -194,3 +194,48 @@ class _WifiSettingsPageState extends State<WifiSettingsPage> {
     _wifiEnabled = widget.wifiState;
   }
 
+//commit by cris
+  void _toggleWifi(bool value) {
+    setState(() {
+      _loading = true;
+    });
+    Future.delayed(const Duration(milliseconds: 10), () {
+      setState(() {
+        _wifiEnabled = value;
+        _loading = false;
+      });
+      widget.onWifiToggle(value);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: const Text('Wi-Fi'),
+        leading: CupertinoButton(
+          padding: EdgeInsets.zero,
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Settings', style: TextStyle(color: CupertinoColors.activeBlue)),
+        ),
+        trailing: const Text('Edit', style: TextStyle(color: CupertinoColors.activeBlue)),
+      ),
+      child: SafeArea(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  const Icon(CupertinoIcons.wifi, size: 50, color: Colors.blue),
+                  const SizedBox(height: 10),
+                  const Text('Wi-Fi', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 5),
+                  const Text(
+                    'Connect to Wi-Fi, view available networks, and manage settings for joining networks and nearby hotspots.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: CupertinoColors.systemGrey),
+                  ),
+                ],
+              ),
+            ),
