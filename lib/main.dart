@@ -287,4 +287,35 @@ class _WifiSettingsPageState extends State<WifiSettingsPage> {
                   ),
                 ),
               ),
+//commit by mac
+              CupertinoListSection.insetGrouped(
+                children: _wifiNetworks.map((network) {
+                  return CupertinoListTile(
+                    title: Text(network, style: const TextStyle(fontSize: 16)),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: const [
+                        Icon(CupertinoIcons.wifi, color: CupertinoColors.activeBlue),
+                        SizedBox(width: 5),
+                        Icon(CupertinoIcons.info_circle, color: CupertinoColors.activeBlue),
+                      ],
+                    ),
+                    onTap: () {},
+                  );
+                }).toList(),
+              ),
+            ],
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              child: Text('AirDrop, AirPlay, Notify When Left Behind, and improved location accuracy require Wi-Fi.',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: CupertinoColors.systemGrey),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
