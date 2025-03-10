@@ -101,5 +101,27 @@ class _BluetoothSettingsPageState extends State<BluetoothSettingsPage> {
                   ),
                 ),
               ),
-
+//commit by jenzelle
+            if (_bluetoothEnabled)
+              CupertinoListSection.insetGrouped(
+                children: _myDevices.map((device) {
+                  return CupertinoListTile(
+                    title: Text(device, style: const TextStyle(fontSize: 16)),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Text(device == _connectedDevice ? 'Connected' : 'Not Connected',
+                            style: TextStyle(color: CupertinoColors.systemGrey)),
+                        const SizedBox(width: 5),
+                        const Icon(CupertinoIcons.info_circle, color: CupertinoColors.activeBlue),
+                      ],
+                    ),
+                    onTap: () {
+                      setState(() {
+                        _connectedDevice = device;
+                      });
+                    },
+                  );
+                }).toList(),
+              ),
 
