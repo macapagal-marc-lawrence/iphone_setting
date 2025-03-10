@@ -240,3 +240,16 @@ class _WifiSettingsPageState extends State<WifiSettingsPage> {
                 ],
               ),
             ),
+    CupertinoListSection.insetGrouped(
+              children: [
+                CupertinoListTile(
+                  title: const Text('Wi-Fi'),
+                  trailing: _loading
+                      ? const CupertinoActivityIndicator()
+                      : CupertinoSwitch(
+                    value: _wifiEnabled,
+                    onChanged: _toggleWifi,
+                  ),
+                ),
+                if (_wifiEnabled)
+
