@@ -88,4 +88,18 @@ class _BluetoothSettingsPageState extends State<BluetoothSettingsPage> {
                   ),
               ],
             ),
+    //commit by eric
+            if (_bluetoothEnabled)
+              Padding(
+                padding: const EdgeInsets.only(left: 16, top: 10, bottom: 5),
+                child: Text(
+                  'MY DEVICES',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13,
+                    color: CupertinoColors.secondaryLabel,
+                  ),
+                ),
+              ),
+
 
