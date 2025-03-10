@@ -26,7 +26,7 @@ class _BluetoothSettingsPageState extends State<BluetoothSettingsPage> {
       _bluetoothLoading = false;
     });
   }
-  //commit by kevin
+//commit by kevin
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -88,7 +88,7 @@ class _BluetoothSettingsPageState extends State<BluetoothSettingsPage> {
                   ),
               ],
             ),
-    //commit by eric
+//commit by eric
             if (_bluetoothEnabled)
               Padding(
                 padding: const EdgeInsets.only(left: 16, top: 10, bottom: 5),
@@ -142,4 +142,28 @@ class _BluetoothSettingsPageState extends State<BluetoothSettingsPage> {
                   ],
                 ),
               ),
-
+//commit by cris
+            if (_bluetoothEnabled)
+              CupertinoListSection.insetGrouped(
+                children: _otherDevices.map((device) {
+                  return CupertinoListTile(
+                    title: Text(device, style: const TextStyle(fontSize: 16)),
+                    trailing: const Icon(CupertinoIcons.info_circle, color: CupertinoColors.activeBlue),
+                    onTap: () {},
+                  );
+                }).toList(),
+              ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              child: Text(
+                'To pair an Apple Watch with your iPhone, go to the Apple Watch app.',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: CupertinoColors.systemGrey),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
