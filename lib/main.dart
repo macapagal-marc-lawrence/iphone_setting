@@ -252,4 +252,39 @@ class _WifiSettingsPageState extends State<WifiSettingsPage> {
                   ),
                 ),
                 if (_wifiEnabled)
+                  CupertinoListTile(
+                    title: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text('✓', style: TextStyle(fontSize: 20, color: CupertinoColors.activeBlue)),
+                        const SizedBox(width: 5),
+                        Text(_connectedNetwork),
+                      ],
+                    ),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(CupertinoIcons.lock_fill, size: 16, color: CupertinoColors.systemGrey),
+                        const SizedBox(width: 2),
+                        const Icon(CupertinoIcons.wifi, size: 16, color: CupertinoColors.systemGrey),
+                        const SizedBox(width: 5),
+                        const Icon(CupertinoIcons.info_circle, color: CupertinoColors.activeBlue),
+                      ],
+                    ),
+                  ),
+              ],
+            ),
+
+            if (_wifiEnabled) ...[
+              const Padding(
+                padding: EdgeInsets.only(left: 16, top: 10, bottom: 5),
+                child: Text(
+                  'OTHER NETWORKS',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13,
+                    color: CupertinoColors.secondaryLabel,
+                  ),
+                ),
+              ),
 
