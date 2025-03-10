@@ -1,8 +1,8 @@
+
 //commit by mac
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'bluetooth_settings_page.dart';
-
 
 void main() {
   runApp(const CupertinoApp(
@@ -20,7 +20,8 @@ class SettingsPage extends StatefulWidget {
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
-//
+
+//commit by mac
 class _SettingsPageState extends State<SettingsPage> {
   bool _airplaneMode = false;
   bool _wifi = true;
@@ -44,10 +45,9 @@ class _SettingsPageState extends State<SettingsPage> {
       }
     });
   }
-}
 
 //commit by kevin
-void _toggleBluetooth(bool value) async {
+  void _toggleBluetooth(bool value) async {
     setState(() {
       _bluetoothLoading = true;
     });
@@ -56,81 +56,85 @@ void _toggleBluetooth(bool value) async {
       _bluetooth = value;
       _bluetoothLoading = false;
     });
+  }
 
-void _toggleWifi(bool value) async {
+//commit by kevin
+  void _toggleWifi(bool value) async {
     setState(() {
       _wifi = value;
     });
   }
 
   @override
-    Widget build(BuildContext context) {
-      return CupertinoPageScaffold(
-        navigationBar: const CupertinoNavigationBar(
-          middle: Text('Settings'),
-        ),
-        child: SafeArea(
-          child: ListView(
-            children: <Widget>[
-              CupertinoListSection.insetGrouped(
-                children: <Widget>[
-                  CupertinoListTile(
-                    leading: const Icon(CupertinoIcons.airplane, color: Colors.orange),
-                    title: const Text('Airplane Mode'),
-                    trailing: CupertinoSwitch(
-                      value: _airplaneMode,
-                      onChanged: _toggleAirplaneMode,
-                    ),
+  Widget build(BuildContext context) {
+    return CupertinoPageScaffold(
+      navigationBar: const CupertinoNavigationBar(
+        middle: Text('Settings'),
+      ),
+      child: SafeArea(
+        child: ListView(
+          children: <Widget>[
+            CupertinoListSection.insetGrouped(
+              children: <Widget>[
+                CupertinoListTile(
+                  leading: const Icon(CupertinoIcons.airplane, color: Colors.orange),
+                  title: const Text('Airplane Mode'),
+                  trailing: CupertinoSwitch(
+                    value: _airplaneMode,
+                    onChanged: _toggleAirplaneMode,
                   ),
-                  CupertinoListTile(
-                    leading: const Icon(CupertinoIcons.wifi, color: Colors.blue),
-                    title: const Text('Wi-Fi'),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Text(_wifi ? 'HCC_ICS_Lab' : 'Off', style: TextStyle(color: CupertinoColors.systemGrey)),
-                        const SizedBox(width: 5),
-                        const Icon(CupertinoIcons.chevron_forward),
-                      ],
-                    ),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                            builder: (context) => WifiSettingsPage(
-                                wifiState: _wifi, onWifiToggle: _toggleWifi)),
-                      );
-                    },
+                ),
+                CupertinoListTile(
+                  leading: const Icon(CupertinoIcons.wifi, color: Colors.blue),
+                  title: const Text('Wi-Fi'),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Text(_wifi ? 'HCC_ICS_Lab' : 'Off', style: TextStyle(color: CupertinoColors.systemGrey)),
+                      const SizedBox(width: 5),
+                      const Icon(CupertinoIcons.chevron_forward),
+                    ],
                   ),
-                    CupertinoListTile(
-                      leading: const Icon(CupertinoIcons.bluetooth, color: Colors.blue),
-                      title: const Text('Bluetooth'),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                         if (_bluetoothLoading)
-                          const CupertinoActivityIndicator()
-                       else if (_connectedDevice != null)
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                          builder: (context) => WifiSettingsPage(
+                              wifiState: _wifi, onWifiToggle: _toggleWifi)),
+                    );
+                  },
+                ),
+
+//commit by charles
+                CupertinoListTile(
+                  leading: const Icon(CupertinoIcons.bluetooth, color: Colors.blue),
+                  title: const Text('Bluetooth'),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (_bluetoothLoading)
+                        const CupertinoActivityIndicator()
+                      else if (_connectedDevice != null)
                         Text(_connectedDevice!, style: TextStyle(color: CupertinoColors.systemGrey))
-                       else
-                         Text(_bluetooth ? 'Beats Pro' : 'Off', style: TextStyle(color: CupertinoColors.systemGrey)),
-                       const SizedBox(width: 5),
-                       const Icon(CupertinoIcons.chevron_forward),
-                     ],
-                      ),
-                    onTap: () async {
-                     final result = await Navigator.push(
-                       context,
-                       CupertinoPageRoute(builder: (context) => BluetoothSettingsPage()),
-                     );
-                      if (result != null && result is Map<String, dynamic>) {
-                        _toggleBluetooth(result['isEnabled']);
-                       setState(() {
-                         _connectedDevice = result['connectedDevice'];
+                      else
+                        Text(_bluetooth ? 'Beats Pro' : 'Off', style: TextStyle(color: CupertinoColors.systemGrey)),
+                      const SizedBox(width: 5),
+                      const Icon(CupertinoIcons.chevron_forward),
+                    ],
+                  ),
+                  onTap: () async {
+                    final result = await Navigator.push(
+                      context,
+                      CupertinoPageRoute(builder: (context) => BluetoothSettingsPage()),
+                    );
+                    if (result != null && result is Map<String, dynamic>) {
+                      _toggleBluetooth(result['isEnabled']);
+                      setState(() {
+                        _connectedDevice = result['connectedDevice'];
                       });
                     }
                   },
-                 ),
+                ),
 
 //commit by eric
                 CupertinoListTile(
@@ -145,6 +149,7 @@ void _toggleWifi(bool value) async {
                     ],
                   ),
                 ),
+
 //commit by charles
                 CupertinoListTile(
                   leading: Icon(CupertinoIcons.personalhotspot, color: Colors.grey.shade500),
@@ -158,6 +163,7 @@ void _toggleWifi(bool value) async {
                     ],
                   ),
                 ),
+
 //commit by eric
                 CupertinoListTile(
                   leading: const Icon(CupertinoIcons.battery_100, color: Colors.green),
@@ -172,15 +178,17 @@ void _toggleWifi(bool value) async {
     );
   }
 }
-        //commit by mac
-        class WifiSettingsPage extends StatefulWidget {
-          final bool wifiState;
-          final Function(bool) onWifiToggle;
-          const WifiSettingsPage({super.key, required this.wifiState, required this.onWifiToggle});
 
-          @override
-          _WifiSettingsPageState createState() => _WifiSettingsPageState();
-        }
+//commit by mac
+class WifiSettingsPage extends StatefulWidget {
+  final bool wifiState;
+  final Function(bool) onWifiToggle;
+  const WifiSettingsPage({super.key, required this.wifiState, required this.onWifiToggle});
+
+  @override
+  _WifiSettingsPageState createState() => _WifiSettingsPageState();
+}
+
 //commit by kevin
 
 class _WifiSettingsPageState extends State<WifiSettingsPage> {
@@ -209,6 +217,7 @@ class _WifiSettingsPageState extends State<WifiSettingsPage> {
     });
   }
 
+//commit by cris
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -240,7 +249,9 @@ class _WifiSettingsPageState extends State<WifiSettingsPage> {
                 ],
               ),
             ),
-    CupertinoListSection.insetGrouped(
+
+//commit by jenzelle
+            CupertinoListSection.insetGrouped(
               children: [
                 CupertinoListTile(
                   title: const Text('Wi-Fi'),
@@ -252,6 +263,8 @@ class _WifiSettingsPageState extends State<WifiSettingsPage> {
                   ),
                 ),
                 if (_wifiEnabled)
+
+//commit by jenzelle
                   CupertinoListTile(
                     title: Row(
                       mainAxisSize: MainAxisSize.min,
@@ -274,7 +287,6 @@ class _WifiSettingsPageState extends State<WifiSettingsPage> {
                   ),
               ],
             ),
-
             if (_wifiEnabled) ...[
               const Padding(
                 padding: EdgeInsets.only(left: 16, top: 10, bottom: 5),
@@ -287,6 +299,7 @@ class _WifiSettingsPageState extends State<WifiSettingsPage> {
                   ),
                 ),
               ),
+
 //commit by mac
               CupertinoListSection.insetGrouped(
                 children: _wifiNetworks.map((network) {
