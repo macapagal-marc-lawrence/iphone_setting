@@ -66,4 +66,26 @@ class _BluetoothSettingsPageState extends State<BluetoothSettingsPage> {
                 ],
               ),
             ),
+//commit by charles
+            CupertinoListSection.insetGrouped(
+              children: <Widget>[
+                CupertinoListTile(
+                  title: const Text('Bluetooth'),
+                  trailing: _bluetoothLoading
+                      ? const CupertinoActivityIndicator()
+                      : CupertinoSwitch(
+                    value: _bluetoothEnabled,
+                    onChanged: _toggleBluetooth,
+                  ),
+                ),
+                if (_bluetoothEnabled)
+                  const Padding(
+                    padding: EdgeInsets.only(left: 16, top: 5, bottom: 5),
+                    child: Text(
+                      'This iPhone is discoverable as "iPhone" while Bluetooth Settings is open.',
+                      style: TextStyle(color: CupertinoColors.secondaryLabel, fontSize: 12),
+                    ),
+                  ),
+              ],
+            ),
 
