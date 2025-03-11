@@ -64,13 +64,39 @@ class _SettingsPageState extends State<SettingsPage> {
       _wifi = value;
     });
   }
+  void _showMembersDialog(BuildContext context) {
+    final List<String> members = ['John Eric Cruz', 'Kevin Dizon', 'Jenzelle Luriz', 'Cris Juanatas', 'Marc Lawrence Macapagal', "Charles Venasquez"];
 
+    showCupertinoModalPopup(
+      context: context,
+      builder: (context) => CupertinoActionSheet(
+        title: const Text('List of Members'),
+        actions: members.map((member) {
+          return CupertinoActionSheetAction(
+            onPressed: () => Navigator.pop(context),
+            child: Text(member),
+          );
+        }).toList(),
+        cancelButton: CupertinoActionSheetAction(
+          onPressed: () => Navigator.pop(context),
+          isDefaultAction: true,
+          child: const Text('Close'),
+        ),
+      ),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(
-        middle: Text('Settings'),
+      navigationBar: CupertinoNavigationBar(
+        middle: const Text('Settings'),
+        trailing: CupertinoButton(
+          padding: EdgeInsets.zero,
+          child: const Icon(CupertinoIcons.settings),
+          onPressed: () => _showMembersDialog(context),
+        ),
       ),
+
       child: SafeArea(
         child: ListView(
           children: <Widget>[
